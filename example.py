@@ -1,14 +1,17 @@
-import portal
+import portal,time
 
-window = portal.display.size()
-x = 10
-
-surf = portal.surface.create(100,100)
+window = portal.display.size(600,400)
+surf = portal.surface.create(portal.display.getwidth(window),portal.display.getheight(window))
 
 while True:
-	portal.draw.rect(surf,0,0,300,250)
-	portal.draw.line(surf,x,10,100,100)
+	f=time.time()
+	portal.draw.fill(surf)
+	portal.draw.line(surf,10,10,100,100,"#fff")
 	portal.surface.pack(surf)
-	x += 1
 
 	portal.display.update(window)
+	l=time.time()
+	print(60/(l-f))
+
+	#keep this to avoid frame drops
+	time.sleep(0.05)
