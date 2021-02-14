@@ -2,6 +2,9 @@ import tkinter
 from tkinter import *
 
 class display:
+	def __init__(self):
+		pass
+
 	def size(x=300,y=250):
 		_root = tkinter.Tk()
 		_root.geometry(str(x)+"x"+str(y))
@@ -15,6 +18,12 @@ class display:
 
 	def resizable(_root,x=True,y=True):
 		_root.resizable(x,y)
+
+	def getheight(_root):
+		return _root.winfo_height()
+
+	def getwidth(_root):
+		return _root.winfo_width()
 
 	def quit(_root):
 		_root.destroy()
@@ -32,9 +41,12 @@ class surface:
 		_surface.pack(fill=BOTH,expand=1)
 
 class draw:
-	def line(_surface,x,y,a,b):
+	def fill(_surface,color="#000"):
+		_surface.create_rectangle(-2,-2,_surface.winfo_width()-1,_surface.winfo_height()-1,fill=color,width=0,outline=color)
+
+	def line(_surface,x,y,a,b,color):
 		try:
-			_surface.create_line(x,y,a,b)
+			_surface.create_line(x,y,a,b,fill=color)
 		except:
 			return "unable to draw line"
 
