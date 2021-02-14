@@ -40,6 +40,6 @@ class draw:
 
 	def rect(_surface,x,y,a,b):
 		try:
-			_surface.create_rectangle(x,y,a,b,fill="#05f")
+			_surface.create_rectangle(x,y,a,b,fill="#05f",width=0)
 		except:
 			return "unable to draw rect"
