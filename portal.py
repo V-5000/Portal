@@ -40,6 +40,9 @@ class surface:
 	def pack(_surface):
 		_surface.pack(fill=BOTH,expand=1)
 
+	def forgot(_surface):
+		_surface.delete("all")
+
 class draw:
 	def fill(_surface,color="#000"):
 		_surface.create_rectangle(-2,-2,_surface.winfo_width()-1,_surface.winfo_height()-1,fill=color,width=0,outline=color)
@@ -55,3 +58,10 @@ class draw:
 			_surface.create_rectangle(x,y,a,b,fill="#05f",width=0)
 		except:
 			return "unable to draw rect"
+
+class image:
+	def load(path):
+		return PhotoImage(file=path)
+
+	def get_color(img,x,y):
+		return img.get(x,y)
