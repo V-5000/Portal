@@ -9,9 +9,10 @@ while True:
 	portal.draw.line(surf,10,10,100,100,"#fff")
 	portal.surface.pack(surf)
 
+	portal.surface.forgot(surf)
 	portal.display.update(window)
-	l=time.time()
-	print(60/(l-f))
 
 	#keep this to avoid frame drops
-	time.sleep(0.05)
+	time.sleep(0.0)
+	l=time.time()
+	print(60/(l-f))
