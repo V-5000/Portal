@@ -16,8 +16,12 @@ class display:
 	def resizable(_root,x=True,y=True):
 		_root.resizable(x,y)
 
+	def quit(_root):
+		_root.destroy()
+
 	def update(_root):
-		_root.mainloop()
+		_root.update()
+			
 
 class surface:
 	def create(width,height):
@@ -25,8 +29,17 @@ class surface:
 		return _surface
 
 	def pack(_surface):
-		_surface.pack(fill=None,expand=0)
+		_surface.pack(fill=BOTH,expand=1)
 
 class draw:
 	def line(_surface,x,y,a,b):
-		_surface.create_line(x,y,a,b)
+		try:
+			_surface.create_line(x,y,a,b)
+		except:
+			return "unable to draw line"
+
+	def rect(_surface,x,y,a,b):
+		try:
+			_surface.create_rectangle(x,y,a,b,fill="#05f")
+		except:
+			return "unable to draw rect"
