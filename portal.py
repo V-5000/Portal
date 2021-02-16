@@ -39,6 +39,9 @@ class surface:
 
 	def pack(_surface):
 		_surface.pack(fill=BOTH,expand=1)
+	
+	def image(_root,img,x,y):
+		_root.create_image(x, y, image=img, anchor=NW)
 
 	def forgot(_surface):
 		_surface.delete("all")
