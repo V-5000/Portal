@@ -38,12 +38,28 @@ class init(object):
 		self._root.update()
 
 class space(object):
-	def create(self,width=400,height=300,border_width=0,color="black"):
-		self.surf = Canvas(width,height,bd=border_width,bg=color)
-		self.surf.pack(fill=None,expand=0)
+	def create(_root, width=400,height=300,border_width=0,color="black"):
+		surf = Canvas(_root, width, height, bd=border_width, bg=color)
+		return surf
 
-	def function():
-		pass
+	def show(surf):
+		surf.pack(fill=None,expand=0)
+
+class draw:
+	def line(surf, *argv, color="white"):
+		surf.create_line(argv, fill=color)
+
+	def poligon(surf, *argv, color="white", outlinebg=None):
+		surf.create_poligon(argv,fill=color,outline=outlinebg)
+
+	def oval(surf, *argv, color="white", outlinebg=None):
+		surf.create_oval(argv,fill=color, outline=outlinebg)
+
+	def image(surf, image, x, y,pos=None):
+		surf.create_image(x,y,anchor=pos)
+
+	def text(surf, Text="this is text", x, y, pos=None ,color="black" ,Font="Arial"):
+		surf.create_text(x,y,anchor=pos,font=Font,text=Text,bg=color)
 
 class image:
 	def load(path):
