@@ -1,70 +1,67 @@
-import tkinter
-from tkinter import *
+from PIL import ImageTk, Image
 
-class display:
+try:
+	import tkinter,sys
+	from tkinter import *
+except :
+	import Tkinter,sys
+	from Tkinter import *
+
+class init(object):
+	"""docstring for display"""
 	def __init__(self):
+		self._root = None
+		self.is_closed = True
+
+	def size(self, width=400, height=300, x=100 , y=100):
+		self.width = width
+		self.height = height
+
+		self._root = tkinter.Tk()
+
+		self._root.geometry(str(width)+"x"+str(height)+"+"+str(x)+"+"+str(y))
+		self._root.resizable(False,False)
+		self._root.title("portal")
+
+		return self._root
+
+	def title(self,title="portal"):
+		self._root.title(title)
+
+	def resizable(x=True,y=True):
+		self._root.resizable(x,y)
+
+	def totalquit(self):
+		sys.exit()
+
+	def update(self):
+		self._root.update()
+
+class space(object):
+	def create(self,width=400,height=300,border_width=0,color="black"):
+		self.surf = Canvas(width,height,bd=border_width,bg=color)
+		self.surf.pack(fill=None,expand=0)
+
+	def function():
 		pass
-
-	def size(x=300,y=250):
-		_root = tkinter.Tk()
-		_root.geometry(str(x)+"x"+str(y))
-		_root.title("Portal window")
-		_root.resizable(False,False)
-		
-		return _root
-
-	def title(_root,title="Portal window"):
-		_root.title(title)
-
-	def resizable(_root,x=True,y=True):
-		_root.resizable(x,y)
-
-	def getheight(_root):
-		return _root.winfo_height()
-
-	def getwidth(_root):
-		return _root.winfo_width()
-
-	def quit(_root):
-		_root.destroy()
-
-	def update(_root):
-		_root.update()
-			
-
-class surface:
-	def create(width,height):
-		_surface = Canvas()
-		return _surface
-
-	def pack(_surface):
-		_surface.pack(fill=BOTH,expand=1)
-	
-	def image(_root,img,x,y):
-		_root.create_image(x, y, image=img, anchor=NW)
-
-	def forgot(_surface):
-		_surface.delete("all")
-
-class draw:
-	def fill(_surface,color="#000"):
-		_surface.create_rectangle(-2,-2,_surface.winfo_width()-1,_surface.winfo_height()-1,fill=color,width=0,outline=color)
-
-	def line(_surface,x,y,a,b,color):
-		try:
-			_surface.create_line(x,y,a,b,fill=color)
-		except:
-			return "unable to draw line"
-
-	def rect(_surface,x,y,a,b):
-		try:
-			_surface.create_rectangle(x,y,a,b,fill="#05f",width=0)
-		except:
-			return "unable to draw rect"
 
 class image:
 	def load(path):
-		return PhotoImage(file=path)
+		img = Image.open(str(path))
+		image = ImageTk.PhotoImage(img)
+		return image
 
-	def get_color(img,x,y):
-		return img.get(x,y)
+	def resize(img,x,y,antialias=False):
+		image = img.resize((x,y), if antialias==True:Image.ANTIALIAS)
+		return image
+
+	def crop(img, a,b,c,d):
+		image = img.crop((a,b,c,d))
+		return image
+
+	def flip(img,x,y):
+		if x:
+			img = img.transpose(Image.FLIP_LEFT_RIGHT)
+		if y:
+			img = img.transpose(Image.FLIP_TOP_BOTTOM)
+		return img
